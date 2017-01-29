@@ -14,7 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
     
     <!-- Custom CSS -->
     <link href="css/shop-item.css" rel="stylesheet">
@@ -44,24 +44,6 @@
                 </button>
                 <a class="navbar-brand" href="#">Meerer</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="skill_analysis.html">My Profile</a>
-                    </li>
-                    <li>
-                        <a href="#">ExperienceMine</a>
-                    </li>
-                    <li>
-                        <a href="#">Points: 10</a>
-                    </li>
-                </ul>
-                <div class="nav navbar-nav pull-right" style="padding-top: 15px">
-                    <a href="#" style="text-decoration: none">You are logged in as: Hossain, Sakeeb!</a>
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                </div>
-            </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -71,24 +53,11 @@
 
     <div class="container">
 
-        <div class="row">
+      <img src="main_logo.png"/>
+      <a class="btn btn-success" href="add_experience.php">Submit</a>
+        </div>
 
-            <div class="col-md-3">
-                <p class="lead">Your Profile</p>
-                <div class="list-group">
-                    <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
-                    <a href="#" class="list-group-item">Experience List</a>
-                    <a href="#" class="list-group-item">Add an Experience</a>
-                    <a href="#" class="list-group-item">Achievements</a>
-                </div>
-            </div>
 
-            <div class="col-md-9">
-
-                <h1>Pan-am Event Volunteer</h1>
-                <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
-            </div>
 
     <div class="container">
 
@@ -111,7 +80,21 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        Notification.requestPermission().then(function(result) {
+  console.log(result);
+});
 
+function notifyMe(theBody,theIcon,theTitle) {
+  var options = {
+      body: "You got 5 points!",
+      icon: "meerar_logo.png"
+  }
+  var n = new Notification("Meerar",options);
+  setTimeout(n.close.bind(n), 5000); 
+}
+
+    </script>
 </body>
 
 </html>

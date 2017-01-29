@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="skill_analysis.html">My Profile</a>
+                        <a href="skill_analysis.php">My Profile</a>
                     </li>
                     <li>
                         <a href="experience_mine.php">ExperienceMine</a>
@@ -77,9 +77,9 @@
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
                     <a href="#" class="list-group-item active">Skill Analysis</a>
-                    <a href="experience_list.html" class="list-group-item">Experience List</a>
-                    <a href="#" class="list-group-item">Add an Experience</a>
-                    <a href="#" class="list-group-item">Achievements</a>
+                    <a href="experience_list.php" class="list-group-item">Experience List</a>
+                    <a href="add_experience.php" class="list-group-item">Add an Experience</a>
+                    <a href="achievements.php" class="list-group-item">Achievements</a>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@
 
                
 
-                <div class="well">
+                <div class="well" >
 
  <h2>Analysis</h2>
 
@@ -183,9 +183,46 @@
 
                 </div>
 
+                 <div class="well" style="background-color: white !important;">
+
+ <h1>Recommended Events</h1>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><strong>We noticed your strong interest in <strong>Creativity</strong> and <strong>Programming(PHP). Checkout the following events:</strong></p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>IBM - Product Manager</h3>
+                            <p>IBM has taken product management to the next level. Our Offering Managers define, develop and deliver differentiated offerings that focus on winning in markets and delivering iconic user experiences. </p>
+                            <button class="btn btn-success">RSVP</button>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <h3>ICSOB 2017 - International Conference on Software Business</h3>
+                            <p>Public and private organizations are entering in the digital world where real time data is available about their operations, their operating environments, third-party services offered to increase their performance as well as chances in the demands of their customers. </p>
+                            <button class="btn btn-success">RSVP</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
+
+
         </div>
+
+
 
     </div>
     <!-- /.container -->

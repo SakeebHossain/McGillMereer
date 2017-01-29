@@ -48,10 +48,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="skill_analysis.html">My Profile</a>
+                        <a href="skill_analysis.php">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
                         <a href="#">Points: 10</a>
@@ -76,7 +76,7 @@
             <div class="col-md-3">
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
-                    <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
+                    <a href="skill_analysis.php" class="list-group-item active">Skill Analysis</a>
                     <a href="#" class="list-group-item">Experience List</a>
                     <a href="#" class="list-group-item">Add an Experience</a>
                     <a href="#" class="list-group-item">Achievements</a>

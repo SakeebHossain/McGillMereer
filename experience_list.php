@@ -48,10 +48,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="skill_analysis.html">My Profile</a>
+                        <a href="skill_analysis.php">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
                         <a href="#">Points: 10</a>
@@ -76,7 +76,7 @@
             <div class="col-md-3">
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
-                    <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
+                    <a href="skill_analysis.php" class="list-group-item active">Skill Analysis</a>
                     <a href="#" class="list-group-item">Experience List</a>
                     <a href="#" class="list-group-item">Add an Experience</a>
                     <a href="#" class="list-group-item">Achievements</a>
@@ -85,9 +85,24 @@
 
             <div class="col-md-9">
 
-                <h1>Pan-am Event Volunteer</h1>
-                <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
+                <h1>Your Skill Profile</h1><span><h4>A compilation of the latest and greatest from you.</h4></span>
+
+
+<table class="table table-striped">
+<thead><tr><th>Event Name</th><th>Description</th><th>Associated Skills</th><th>Sentiment Score</th></tr></thead>
+<tbody>
+  <tr><td>McGill Hacks</td><td><a href="description_mcgill.php" target="_blank">...</a></td><td>Waiting for reviews...</td><td><p>positive (+0.300)</p></td></tr>
+
+  <tr><td>Queen's Inter-Collegiate Business Competition</td><td><a href="description_queens.php" target="_blank">...</a></td><td><a href="#">Leadership</a> | <a href="#">Critical Thinking</a> | <a href="#">Creativity</a></td><td><p>positive (+0.529)</p></td></tr>
+
+  <tr><td>CIBC Business Analyst Co-op</td><td><a href="description_cibc.php" target="_blank">...</a></td><td><a href="#">Leadership</a> | <a href="#">Writing</a> | <a href="#">Creativity</a></td><td><p>positive (+0.625)</p></td></tr>
+
+  <tr><td>Pan-am Event Volunteer</td><td><a href="description_panam.php" target="_blank">...</a></td><td><a href="#">Ethical Conduct</a> | <a href="#">Writing</a> </td><td><p>negative (-0.492)</p></td></tr>
+  </tbody>
+</table>
+
+
+
             </div>
 
     <div class="container">

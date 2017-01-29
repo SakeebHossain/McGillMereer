@@ -51,7 +51,7 @@
                         <a href="skill_analysis.html">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
                         <a href="#">Points: 10</a>
@@ -85,9 +85,9 @@
 
             <div class="col-md-9">
 
-                <h1>Pan-am Event Volunteer</h1>
+                <h1>McGill Hacks</h1>
                 <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
+                <p>I came to McGill not knowing anyone, and being a beginner, it was challenging to find a team that would take me in. I managed to find another team of beginners but <span style="background-color: tomato">unfortunately</span>, my team decided to leave the hackathon just after dinner was served on Saturday. As a result I had to do the project all myself: a lot to do in under 12 hours! This is my first <span style="background-color: grey">major</span> hackathon so I was pretty <span style="background-color: tomato">bummed</span> out. Still, I followed through because I thought I had an <span style="background-color: green">interesting</span> idea. <span style="background-color: green">hopefully</span> the judges <span style="background-color: green">agree</span>!</p>
             </div>
 
     <div class="container">

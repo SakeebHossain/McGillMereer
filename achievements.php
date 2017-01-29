@@ -48,13 +48,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="skill_analysis.html">My Profile</a>
+                        <a href="skill_analysis.php">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
-                        <a href="#">Points: 10</a>
+                        <a href="#">Points: 15</a>
                     </li>
                 </ul>
                 <div class="nav navbar-nav pull-right" style="padding-top: 15px">
@@ -76,18 +76,41 @@
             <div class="col-md-3">
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
-                    <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
+                    <a href="skill_analysis.php" class="list-group-item active">Skill Analysis</a>
                     <a href="#" class="list-group-item">Experience List</a>
                     <a href="#" class="list-group-item">Add an Experience</a>
-                    <a href="#" class="list-group-item">Achievements</a>
+                    <a href="achievements.php" class="list-group-item">Achievements</a>
                 </div>
             </div>
 
             <div class="col-md-9">
 
-                <h1>Pan-am Event Volunteer</h1>
-                <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
+                <h1>Achievements</h1><span><h4>Check out your accomplishments.</h4></span>
+
+
+<table class="table table-striped">
+<tbody>
+ <tr><td><i class="fa fa-ambulance fa-6"></i></td><td><p>Skill Rescue</p></td><td><p>20 pts.</p> </td><td><p>Improve in a skill you previously disliked.</p></td></tr>
+
+ <tr><td><i class="fa fa-android"></i></td><td><p>Coder I</p></td><td><p>20 pts.</p> </td><td><p>Get a positive emotion rank on at least 5 different coding events.</p></td></tr>
+
+  <tr><td><i class="fa fa-assistive-listening-systems"></i></td><td><p>Cool Communicator</p></td><td><p>25 pts.</p> </td><td><p>Demonstrate excellent Communication skills.</p></td></tr>
+
+  <tr><td><i class="fa fa-area-chart"></i></td><td><p>Awesome Analyzer</p></td><td><p>25 pts.</p> </td><td><p>Demonstrate excellent Analysis  skills.</p></td></tr>
+
+  <tr><td><i class="fa fa-android"></i></td><td><p>Coder II</p></td><td><p>30 pts.</p> </td><td><p>Get a positive emotion rank on at least 15 different coding events.</p></td></tr>
+
+    <tr><td><i class="fa fa-calendar-o"></i></td><td><p>Disciplied Reflector I</p></td><td><p>30 pts.</p> </td><td><p>Log onto Meerer and do a review everyday for a week</p></td></tr>
+
+      <tr><td><i class="fa fa-calendar-plus-o"></i></td><td><p>Disciplied Reflector II</p></td><td><p>90 pts.</p> </td><td><p>Log onto Meerar and do a review everyday for a month</p></td></tr>
+
+        <tr><td><i class="fa fa-calendar-check-o"></i></td><td><p>Reflecting Master</p></td><td><p>200 pts.</p> </td><td><p>Log onto Meerar and do a review everyday for a year</p></td></tr>
+
+  </tbody>
+</table>
+
+
+
             </div>
 
     <div class="container">

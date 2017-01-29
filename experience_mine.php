@@ -48,10 +48,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="skill_analysis.html">My Profile</a>
+                        <a href="skill_analysis.php">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
                         <a href="#">Points: 10</a>
@@ -72,22 +72,28 @@
     <div class="container">
 
         <div class="row">
+            <div class="col-md-12">
+                <h1>Welcome to ExperienceMine</h1><span><h4>See what your peers are up to.</h4></span>
 
-            <div class="col-md-3">
-                <p class="lead">Your Profile</p>
-                <div class="list-group">
-                    <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
-                    <a href="#" class="list-group-item">Experience List</a>
-                    <a href="#" class="list-group-item">Add an Experience</a>
-                    <a href="#" class="list-group-item">Achievements</a>
-                </div>
-            </div>
 
-            <div class="col-md-9">
 
-                <h1>Pan-am Event Volunteer</h1>
-                <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
+<table class="table table-striped">
+<thead><tr><th>Event Name</th><th>Sentiment Score</th><th>..</th></tr></thead>
+<tbody>
+  <tr><td>Swim Team Captain</td><td><p>positive (+0.300)</p></td><th><a href="experience.php" target="_blank">Review</a></th></tr>
+
+  <tr><td>Blog Writer</td><td><p>negative (-0.329)</p></td><th><a href="experience.php" target="_blank">Review</a></th></tr>
+
+  <tr><td>Old Home Volunteer</td><td><p>neutral (+0.001)</p></td><th><a href="experience.php" target="_blank">Review</a></th></tr>
+
+  <tr><td>Science Lab Assistant</td><td><p>negative (-0.492)</p></td><th><a href="experience.php" target="_blank">Review</a></th></tr>
+
+    <tr><td>Deloitte Marketing Intern</td><td><p>postive (+0.292)</p></td><th><a href="experience.php" target="_blank">Review</a></th></tr>
+  </tbody>
+</table>
+
+
+
             </div>
 
     <div class="container">

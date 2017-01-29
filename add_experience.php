@@ -51,10 +51,10 @@
                         <a href="skill_analysis.html">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
-                        <a href="#">Points: 10</a>
+                        <a href="#">Points: 5</a>
                     </li>
                 </ul>
                 <div class="nav navbar-nav pull-right" style="padding-top: 15px">
@@ -77,18 +77,54 @@
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
                     <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
-                    <a href="#" class="list-group-item">Experience List</a>
+                    <a href="experience_list.php" class="list-group-item">Experience List</a>
                     <a href="#" class="list-group-item">Add an Experience</a>
                     <a href="#" class="list-group-item">Achievements</a>
                 </div>
             </div>
 
-            <div class="col-md-9">
+    <div class="col-md-9">
 
-                <h1>Pan-am Event Volunteer</h1>
+                <h1>Add an Experience</h1>
+                <h4>Tell us how it went down.</h4>
                 <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
-            </div>
+                <h3>Event name:</h3>
+                <form>
+                    <div class="form-group">
+                      <textarea class="form-control" rows="1" id="comment"  placeholder="Title"></textarea>
+                    </div>
+                </form>
+
+                <h3>How did you feel about the event?:</h3>
+                <form>
+                    <div class="form-group">
+                      <textarea class="form-control" rows="5" id="comment"  placeholder="Write your thoughts here..."></textarea>
+                    </div>
+                    <button class="btn btn-danger" onClick="notifyMe()">Submit</button>
+                </form>
+
+                <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+                  <span style="font-size: 20px; background-color: #F3F5F6; padding: 0 10px;">
+                    OR <!--Padding is optional-->
+                  </span>
+                </div>
+
+                <div>
+                <br/>
+                <img style="vertical-align:middle" src="LinkedIn_Logo.png">
+
+                <br/>
+                <br/>
+
+                <form>
+                    <div class="form-group">
+                      <textarea class="form-control" rows="1" id="comment" placeholder="Paste link to LinkedIn profile here"></textarea>
+                    </div>
+                    <button class="btn btn-danger" onClick="setTimeout(notifyMe(), 5000)">Submit</button>
+                </form>
+                    
+                </div>
+    </div>
 
     <div class="container">
 
@@ -111,6 +147,21 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        Notification.requestPermission().then(function(result) {
+  console.log(result);
+});
+
+function notifyMe(theBody,theIcon,theTitle) {
+  var options = {
+      body: "You got 5 points!",
+      icon: "meerar_logo.png"
+  }
+  var n = new Notification("Meerar",options);
+  setTimeout(n.close.bind(n), 5000); 
+}
+
+    </script>
 
 </body>
 

@@ -14,7 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
     
     <!-- Custom CSS -->
     <link href="css/shop-item.css" rel="stylesheet">
@@ -48,10 +48,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="skill_analysis.html">My Profile</a>
+                        <a href="skill_analysis.php">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
                         <a href="#">Points: 10</a>
@@ -72,23 +72,48 @@
     <div class="container">
 
         <div class="row">
+            <div class="col-md-12">
+                <h1>Swim Team Captain</h1>
+                <div class="well">It was a lot of responsiblity to make sure the team stayed on task but I learned a lot and feel like I'm pretty good at dealing with people. I often had to get creative to motivate the team. I loved the feeling when my team cheered for me after the end of the tournament.</div>
 
-            <div class="col-md-3">
-                <p class="lead">Your Profile</p>
-                <div class="list-group">
-                    <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
-                    <a href="#" class="list-group-item">Experience List</a>
-                    <a href="#" class="list-group-item">Add an Experience</a>
-                    <a href="#" class="list-group-item">Achievements</a>
-                </div>
+<div class="form-group">
+  <label for="Skill 1">Select skill:</label>
+  <select class="form-control" id="sel1">
+  <option value="" disabled selected>Type a skill...</option>
+    <option>Leadership</option>
+    <option>Creativity</option>
+    <option>Teamwork</option>
+    <option>Discipline</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="Skill 2">Select skill:</label>
+  <select class="form-control" id="sel1">
+  <option value="" disabled selected>Type a skill...</option>
+    <option>Leadership</option>
+    <option>Creativity</option>
+    <option>Teamwork</option>
+    <option>Discipline</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="Skill 3">Select skill:</label>
+  <select class="form-control" id="sel1">
+  <option value="" disabled selected>Type a skill...</option>
+    <option>Leadership</option>
+    <option>Creativity</option>
+    <option>Teamwork</option>
+    <option>Discipline</option>
+  </select>
+</div>
+
+                <button class="btn btn-danger" onClick="notifyMe()">Submit</button>
             </div>
+        </div>
 
-            <div class="col-md-9">
 
-                <h1>Pan-am Event Volunteer</h1>
-                <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
-            </div>
 
     <div class="container">
 
@@ -111,7 +136,21 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        Notification.requestPermission().then(function(result) {
+  console.log(result);
+});
 
+function notifyMe(theBody,theIcon,theTitle) {
+  var options = {
+      body: "You got 5 points!",
+      icon: "meerar_logo.png"
+  }
+  var n = new Notification("Meerar",options);
+  setTimeout(n.close.bind(n), 5000); 
+}
+
+    </script>
 </body>
 
 </html>

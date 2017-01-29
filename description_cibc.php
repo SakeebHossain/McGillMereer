@@ -48,10 +48,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="skill_analysis.html">My Profile</a>
+                        <a href="skill_analysis.php">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">ExperienceMine</a>
+                        <a href="experience_mine.php">ExperienceMine</a>
                     </li>
                     <li>
                         <a href="#">Points: 10</a>
@@ -76,7 +76,7 @@
             <div class="col-md-3">
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
-                    <a href="skill_analysis.html" class="list-group-item active">Skill Analysis</a>
+                    <a href="skill_analysis.php" class="list-group-item active">Skill Analysis</a>
                     <a href="#" class="list-group-item">Experience List</a>
                     <a href="#" class="list-group-item">Add an Experience</a>
                     <a href="#" class="list-group-item">Achievements</a>
@@ -85,9 +85,9 @@
 
             <div class="col-md-9">
 
-                <h1>Pan-am Event Volunteer</h1>
+                <h1>CIBC Business Analyst Co-op</h1>
                 <hr />
-                <p>I was responsible to guard the door for athletes, and distribute pamphlets. It was quite <span style="background-color: grey">boring</span> and spent most of my time standing around. I <span style="background-color: tomato">disliked</span> being ordered around by the manager.</p>
+                <p>I got <span style="background-color:grey">accepted</span> for my first co-op at CIBC. It was <span style="background-color:lightgreen">really cool</span> working with the bank and applying what I learned in school. Though the start was slow, once it picked up it was quite a challenge! Looking forward to working there <span style="background-color:grey">next summer</span>!</p>
             </div>
 
     <div class="container">
