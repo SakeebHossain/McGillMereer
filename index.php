@@ -14,7 +14,6 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
     
     <!-- Custom CSS -->
     <link href="css/shop-item.css" rel="stylesheet">
@@ -49,52 +48,21 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Page Content -->
+        <header>
+            <div class="container">
 
-    <div class="container">
-
-      <img src="main_logo.png"/>
-      <a class="btn btn-success" href="add_experience.php">Submit</a>
-        </div>
-
-
-
-    <div class="container">
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Meerar</p>
-                </div>
-            </div>
-        </footer>
-
+                
+            <div>
+        <header>
+            <div style="position: absolute; left: 10px; top: 10px; width:400px; height:100px;">
+        <a href="add_experience.php"><img src="main_logo.png"/></a>
     </div>
-    <!-- /.container -->
+    <div style="position: absolute; z-index: 1; left: 50px; top: 200px; width:100px; height:20px;">
+        
+    </div>
+</div>
+        
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-        Notification.requestPermission().then(function(result) {
-  console.log(result);
-});
-
-function notifyMe(theBody,theIcon,theTitle) {
-  var options = {
-      body: "You got 5 points!",
-      icon: "meerar_logo.png"
-  }
-  var n = new Notification("Meerar",options);
-  setTimeout(n.close.bind(n), 5000); 
-}
-
-    </script>
 </body>
 
 </html>
