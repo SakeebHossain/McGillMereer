@@ -1,3 +1,3 @@
-## ![alt tag](https://s7.postimg.org/a2tnr8ygb/icon_128.png)
+## ![alt tag](https://s29.postimg.org/orxyv0rgn/Logo_Makr.png)
 
-A chrome extension that lets you save the tabs you have open and reopen them anytime.
+A tool for helping students get insight into their strengths and weaknesses, as well as how proficient they are at various skills.
