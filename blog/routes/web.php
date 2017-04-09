@@ -11,20 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-	$tasks = DB::select('select * from tasks');
-
-    return view('welcome', [
-    	    'tasks' => $tasks   
-    	]);
-});
-
-
-Route::get('/tasks/{id}', function ($id) {
-
-	$tasks = DB::select('select * from tasks where id='.$id);
-
-    return view('welcome', [
-    	    'tasks' => $tasks   
-    	]);
-});
+Route::get('/', "PostsController@index");
+Route::get('/posts/{post}', "PostsController@show");
