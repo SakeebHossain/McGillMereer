@@ -1,7 +1,3 @@
-@extends ('layouts.layout')
-
-@section ('content')
-
           <div class="blog-post">
             <h2 class="blog-post-title">New feature</h2>
             <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
@@ -15,5 +11,3 @@
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
             <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
           </div><!-- /.blog-post -->
-
-@endsection

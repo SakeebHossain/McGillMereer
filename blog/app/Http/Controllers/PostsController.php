@@ -10,7 +10,26 @@ class PostsController extends Controller
     	return view('posts.index');
     }
 
-        public function show() {
+    public function show() {
     	return view('posts.show');
+    }
+
+    public function create() {
+    	return view('posts.create');
+    }
+
+    public function store() {
+    	//Create new post using request data
+    	$post = new \App\Post;
+    	$post->title = request('title');
+    	$post->body = request('body');
+    	
+
+    	//Save to database
+    	$post->save();
+
+    	//Redirect
+    	return redirect('/');
+
     }
 }
