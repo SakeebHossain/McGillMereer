@@ -1,7 +1,11 @@
-@extends ('layout')
+@extends ('layouts.layout')
 
 @section ('content')
 
-    <h2>A place to show your posts.</h2>
+    <div class="col-sm-8 blog-main">
+        <h2>{{ $post->title }}</h2>
+        <p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }}</p>
+        {{ $post->body }}
+    </div>
 
 @endsection

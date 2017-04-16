@@ -26,13 +26,8 @@
 
       <div class="row">
 
-        <div class="col-sm-8 blog-main">
+              @yield('content')
 
-            @yield('content')
-
-        </div><!-- /.blog-main -->
-
-        @include('layouts.sidebar')
 
       </div><!-- /.row -->
 
