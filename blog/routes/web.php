@@ -11,8 +11,19 @@
 |
 */
 
-Route::get('/', "PostsController@index");
+Route::get('/', "PostsController@index")->name('home');
 Route::get('/posts/create', "PostsController@create");
 Route::post('/posts', 'PostsController@store');	
 
 Route::get('/posts/{id}', "PostsController@show");
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+//-----------------------------------------------------
+Route::get("/register", "RegistrationController@create"); 
+Route::post("/register", "RegistrationController@store"); 
+
+Route::get("/login", "SessionsController@create"); 
+Route::get("/logout", "SessionsController@destroy");
