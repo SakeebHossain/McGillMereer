@@ -8,6 +8,13 @@ use App\Post;
 
 class PostsController extends Controller
 {
+    public function __construct() {
+
+        $this->middleware('auth')->except(['index', 'show']);
+
+    }
+
+
     public function index() {
 
         $posts = Post::latest()->get();
@@ -35,6 +42,7 @@ class PostsController extends Controller
     	$post = new \App\Post;
     	$post->title = request('title');
     	$post->body = request('body');
+        $post->user_id = auth()->id();
     	
 
     	//Save to database
