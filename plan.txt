@@ -1,0 +1,162 @@
+VIEWS ####################################
+/user/
+    create.blade.php
+	profile.blade.php
+
+/session/
+    create.blade.php
+	
+/event/
+    index.blade.php
+    create.blade.php
+	destroy.blade.php
+
+
+~~~ MAIN ~~~
+(1) "/" : Landing page, only see if not logged in. Links to sign in and register. If logged in, redirect to (4).
+(2) "/session/create" : if they are logged in, do not show this. Create the cookie and the session if successful and take them to (4).
+(3) "/user/create" : Same as (2), except add a entry to User table too.
+(4) "/user/{$user_id}" : show page saying, "hello, {$user_name}! You are logged in."; @(NAVBAR)
+
+(5) "/event/create" : submits, a event title, a description, and selects 3 goals. Check their cookie and see if their 
+session_id is in our table and also matches the email. If it does, allow. 
+(5) "/event/" : show all events for that user.  
+(6) "/event/{$event_id}/reflection/create" : user fills out answer to three questions and chooses scores. when posting request, check 
+the user is logged in. Now do a query checking that they actually have an event with said event_id. Then, add a row to reflections table.
+(7) "/event/{$event_id}/reflection/{$reflection_id}" : show the reflection. 
+(8) "/event/{$event_id}/reflection/" : show all reflections for that event)id.
+
+
+~~~PARTIALS~~~
+NAVBAR: includes, link to (5) as "Add Event", () as "Add Reflection, (2) as "Profile"
+FOOTER: Meraar 2017
+
+
+ROUTES ###################################
+
+Route::get("/", "RegistrationController@create")
+Route::get("/user/create","RegistrationController@create")
+Route::post("/user/store", "RegistrationController@store")
+
+Route::get("/user/{$user_id}", "UsersController@show")
+
+Route::post("/create", "USersController@store")
+
+Route::get("/session/create" "SessionsController@create")
+Route::post("/session/", "SessionsController@store")
+Route::post("/session/{{$session_id}}", "SessionsController@destroy")
+
+Route::get("/event/index")
+Route::get("/event/create/")
+Route:: 
+
+Route::get("/event/{$event_id}/reflections", "ReflectionsController@index")
+Route::get("/event/{$event_id}/reflection/create", "ReflectionsController@create")
+Route::get("/event/{$event_id}/reflection/store", "ReflectionsController@store")
+Route::get("/event/{$event_id}/reflections/{$reflection_id}", "ReflectionsController@show")
+
+MODELS ###################################
+
+~~~USER~~~
+-user_id
+-name
+-email
+-password
+
+~~~SESSIONS~~~  // keeps track of logged in users
+-session_id
+-user_email
+-timestamp //login time; timeout after 10 mins.
+
+~~~EVENT~~~
+-event_id
+-user_id
+-title
+-start_time
+-end_time
+-description
+-goal_id_1
+-goal_id_2
+-goal_id_3
+-update_interval
+
+~~~REFLECTION~~~~
+-reflection_id
+-event_id
+-timestamp
+-user_id
+-answer_1
+-answer_2
+-answer_3
+
+
+CONTROLLERS ##############################
+~~~RegistrationController~~~
+create ::
+    - # return the view views/registration/create.blade.php
+	
+store :: # this is for creating a new user.
+    - # do backend validation:
+	-     # make sure the user doesn't already exist by checking if the email already exists in users: 
+	-       "SELECT * FROM users WHERE email == request(['email'])" == EMPTY
+	-     # if it isn't empty, redirect to /user/create and append to errors variable: email already exists!
+	- # if it makes it through that we can add the user to our User table:
+	-       "INSERT INTO users(name, email, password) VALUES (request()->name, request()->email, request()->password)"
+	- # now we log them in indirectly by returning Sessions.store(request()) which just creates a session, a cookie and logs you in. 
+		
+~~~SessionsController~~~
+create ::
+    - # return views/session/create.blade.php if not logged in. Else, redirect to Route("/user/{$user_id}")
+	
+store :: 
+	- # add a session to the sessions table : 
+	- "INSERT INTO sessions (email) VALUES request()->email" 
+	- # then select the values from it we'll need : 
+	- $session = "SELECT increment, timestamp, FROM sessions WHERE email = request()->email";
+	- $session_id, $timestamp, $email = $session[0], $session[0], $session[1], $session[2] 
+	- # and make and return the cookie, to be used in other functions : Cookie::make($session_id, $timestamp, $email)
+
+destroy ::
+    - # if they're logging out manually, just delete the cookie and remove them from Sessions. By default it deletes on browser close anyway. 
+	- # once you figure out how to load the cookie, get the $session_id and do :  
+	- "DELETE * FROM Session WHERE increment = $session_id" 
+	- # now delete the cookie however you do that and redirect to "/" 
+
+~~~UsersController~~~ 
+show :: 
+    - # displays the user profile with user_id specified 
+    - # get the data for the profile: 
+	- $name = "SELECT $name FROM user WHERE user_id == request()->user_id" 
+    - # load the views/user/profile.blade.php view that says "hello, {{$name}}!" 
+
+~~~EventsController~~~
+create ::
+    - # return the view view/event/create.blade.php
+
+store ::
+    - # user helper function to validate that the user is still logged in
+	- # if yes just insert into event table:
+	- "INSERT INTO events (title, description, start_time, end_time, goal1, goal2, goal3)"
+	- # then redirect to /events/index, displaying all events
+
+index ::
+    - # validate user with helper, and grab their user id
+	- display foreach of "SELECT * FROM event WHERE userid = $userid"
+	- # each post should link to /event/{event_id}/reflections
+
+
+~~~ReflectionsController~~~
+
+
+
+NOTES ####################################
+
+~~~Making sure users only see the pages they're supposed to see~~~
+When a user logs in, we create a Session for them, by assigning them a session_id (we'll just use the increment in the sessions table). We then give them a cookie
+containing their session_id, email and login time stamp. We add this entry to our Session table. Now, everytime a user visits a page, we check the cookie and 
+see if their session_id and email show up in the Session table, and if it does, we update the timestamp for their session in our table and their cookie. If we 
+see the difference between their timestamp and the current time is greater than an hour, we will delete that session from the table and log them out on the spot, and
+redirect them to a login page. 
+
+If they manually log out, send them to the login page again, and delete their session.
+Chat Conversation End

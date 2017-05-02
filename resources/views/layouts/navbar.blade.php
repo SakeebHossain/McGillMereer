@@ -9,19 +9,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/user/' . $user->id ) }}">Meraar</a>
+                <a class="navbar-brand" href="#">Meraar</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="{{ url('/user/' . $user->id . '/events/create' ) }}">Events</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Reflection</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="{{ url('/user/' . $user->id ) }}">Profile</a>
                     </li>
                     <li>
                         <a href="{{ url('/logout') }}">Logout</a>

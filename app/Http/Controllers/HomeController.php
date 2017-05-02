@@ -26,15 +26,8 @@ class HomeController extends Controller
 
     public function show($user_id) 
     {
-        //confirm they have a cookie with the email that matches the user_id, else redirect
-        $find_user_increment_query = "SELECT email FROM users WHERE id = '" . $user_id . "'";
-        $url_email = \DB::select($find_user_increment_query)[0]->email; 
-
-        // Check for cookie
-        $cookie_email = \Cookie::get('email', NULL);
-
-        if ($cookie_email != $url_email) {
-            return view('home.welcome');
+        if (Controller::verifyUser($user_id) == false) {
+            return view('home.insufficient_permissions');
         }
 
     	// get name of the user for Users table
