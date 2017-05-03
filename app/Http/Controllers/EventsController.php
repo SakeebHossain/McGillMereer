@@ -9,7 +9,7 @@ class EventsController extends Controller
 {
 
     /* Presents all the posts of the user */
-    public function index($user_id)
+    public function index($user_id) 
     {
         if (Controller::verifyUser($user_id) == false) {
             return redirect('/');

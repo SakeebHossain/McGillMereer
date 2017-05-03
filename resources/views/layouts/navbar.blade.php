@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ url('/user/' . $user->id . '/events/create' ) }}">Events</a>
+                        <a href="{{ url('/user/' . $user->id . '/events' ) }}">Events</a>
                     </li>
                     <li>
                         <a href="#">Reflection</a>
