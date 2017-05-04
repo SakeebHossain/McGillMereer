@@ -7,79 +7,43 @@ use Illuminate\Http\Request;
 
 class ReflectionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index($user_id, $event_id)
     {
-        //
+        $email = \Cookie::get('email', NULL);
+        $get_user_query = "SELECT * FROM users WHERE email = '" . $email . "'";
+        $user = \DB::select($get_user_query)[0];
+
+        $get_event_reflections_query = "SELECT * FROM reflections WHERE event_id = " . $event_id;
+        $reflections = \DB::select($get_event_reflections_query);
+        
+        return view("reflection.index", ["user" => $user, 'reflections' => $reflections]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function create($user_id, $event_id)
     {
-        //
+        $email = \Cookie::get('email', NULL);
+        $get_user_query = "SELECT * FROM users WHERE email = '" . $email . "'";
+        $user = \DB::select($get_user_query)[0];
+
+        return view("reflection.create", ["user" => $user, "event_id" => $event_id]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(Request $request, $user_id, $event_id)
     {
-        //
+        $body = request('body');
+        $add_event_query = "INSERT INTO reflections(user_id, event_id, body) VALUES ('" . $user_id . "', '" . $event_id . "', '" . $body .  "')";
+        \DB::insert($add_event_query);
+
+        return redirect("/");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Reflection  $reflection
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Reflection $reflection)
     {
-        //
+        // 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Reflection  $reflection
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reflection $reflection)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reflection  $reflection
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Reflection $reflection)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Reflection  $reflection
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Reflection $reflection)
-    {
-        //
-    }
 }

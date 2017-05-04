@@ -22,6 +22,12 @@
 
                 <div style="float:right;">
 
+                    <form style="display: inline-block;" method="GET" action="/user/{{ $user->id }}/event/{{ $event->id }}/reflection">
+
+                        <button class="btn btn-info" type="submit"> View Reflections </button>
+
+                    </form>
+
                     <form style="display: inline-block;" method="GET" action="/user/{{ $user->id }}/event/{{ $event->id }}/reflection/create">
 
                         <button class="btn btn-success" type="submit"> Add Reflection </button>

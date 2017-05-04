@@ -15,6 +15,9 @@ class CreateReflectionsTable extends Migration
     {
         Schema::create('reflections', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('user_id');
+            $table->string('event_id');
+            $table->string('body');
             $table->timestamps();
         });
     }
