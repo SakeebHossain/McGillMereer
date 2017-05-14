@@ -9,18 +9,6 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        //-------------------------------------------------------------------------------------
-        $data = array('name'=>"Our Code World");
-        // Path or name to the blade template to be rendered
-        $template_path = 'email_template';
-
-        Mail::send(['text'=> $template_path ], $data, function($message) {
-            // Set the receiver and subject of the mail.
-            $message->to('sakeeb.hossain1@gmail.com', 'Receiver Name')->subject('Laravel First Mail');
-            // Set the sender
-            $message->from('mymail@mymailaccount.com','Our Code World');
-        });
-        //-------------------------------------------------------------------------------------
 
         // Check for cookie
         $email = \Cookie::get('email', NULL);
