@@ -15,6 +15,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '752af1c2bdb339e8474c3c31b22b7d54' => __DIR__ . '/..' . '/illuminate/html/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -71,6 +72,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         ),
         'I' => 
         array (
+            'Illuminate\\Html\\' => 16,
             'Illuminate\\' => 11,
         ),
         'F' => 
@@ -194,6 +196,10 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'Illuminate\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/html',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -272,6 +278,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\SendEmails' => __DIR__ . '/../..' . '/app/Console/Commands/SendEmails.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Event' => __DIR__ . '/../..' . '/app/Event.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -280,6 +287,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\DefaultController' => __DIR__ . '/../..' . '/app/Http/Controllers/DefaultController.php',
         'App\\Http\\Controllers\\EventsController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventsController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ReflectionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReflectionsController.php',
@@ -844,6 +852,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Illuminate\\Auth\\Events\\Lockout' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Events/Lockout.php',
         'Illuminate\\Auth\\Events\\Login' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Events/Login.php',
         'Illuminate\\Auth\\Events\\Logout' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Events/Logout.php',
+        'Illuminate\\Auth\\Events\\PasswordReset' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Events/PasswordReset.php',
         'Illuminate\\Auth\\Events\\Registered' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Events/Registered.php',
         'Illuminate\\Auth\\GenericUser' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/GenericUser.php',
         'Illuminate\\Auth\\GuardHelpers' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/GuardHelpers.php',
@@ -1001,6 +1010,8 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Illuminate\\Contracts\\Support\\Renderable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Support/Renderable.php',
         'Illuminate\\Contracts\\Translation\\Translator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Translation/Translator.php',
         'Illuminate\\Contracts\\Validation\\Factory' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/Factory.php',
+        'Illuminate\\Contracts\\Validation\\ImplicitRule' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/ImplicitRule.php',
+        'Illuminate\\Contracts\\Validation\\Rule' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/Rule.php',
         'Illuminate\\Contracts\\Validation\\ValidatesWhenResolved' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/ValidatesWhenResolved.php',
         'Illuminate\\Contracts\\Validation\\Validator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Validation/Validator.php',
         'Illuminate\\Contracts\\View\\Factory' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/View/Factory.php',
@@ -1234,6 +1245,11 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Illuminate\\Foundation\\Validation\\ValidatesRequests' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php',
         'Illuminate\\Hashing\\BcryptHasher' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Hashing/BcryptHasher.php',
         'Illuminate\\Hashing\\HashServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Hashing/HashServiceProvider.php',
+        'Illuminate\\Html\\FormBuilder' => __DIR__ . '/..' . '/illuminate/html/FormBuilder.php',
+        'Illuminate\\Html\\FormFacade' => __DIR__ . '/..' . '/illuminate/html/FormFacade.php',
+        'Illuminate\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/illuminate/html/HtmlBuilder.php',
+        'Illuminate\\Html\\HtmlFacade' => __DIR__ . '/..' . '/illuminate/html/HtmlFacade.php',
+        'Illuminate\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/illuminate/html/HtmlServiceProvider.php',
         'Illuminate\\Http\\Concerns\\InteractsWithContentTypes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithContentTypes.php',
         'Illuminate\\Http\\Concerns\\InteractsWithFlashData' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithFlashData.php',
         'Illuminate\\Http\\Concerns\\InteractsWithInput' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php',
@@ -1489,6 +1505,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Illuminate\\Translation\\MessageSelector' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/MessageSelector.php',
         'Illuminate\\Translation\\TranslationServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/TranslationServiceProvider.php',
         'Illuminate\\Translation\\Translator' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Translation/Translator.php',
+        'Illuminate\\Validation\\ClosureValidationRule' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/ClosureValidationRule.php',
         'Illuminate\\Validation\\Concerns\\FormatsMessages' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Concerns/FormatsMessages.php',
         'Illuminate\\Validation\\Concerns\\ReplacesAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Concerns/ReplacesAttributes.php',
         'Illuminate\\Validation\\Concerns\\ValidatesAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Validation/Concerns/ValidatesAttributes.php',
@@ -2500,6 +2517,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Psy\\CodeCleaner\\MagicConstantsPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/MagicConstantsPass.php',
         'Psy\\CodeCleaner\\NamespaceAwarePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/NamespaceAwarePass.php',
         'Psy\\CodeCleaner\\NamespacePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/NamespacePass.php',
+        'Psy\\CodeCleaner\\NoReturnValue' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/NoReturnValue.php',
         'Psy\\CodeCleaner\\PassableByReferencePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/PassableByReferencePass.php',
         'Psy\\CodeCleaner\\StaticConstructorPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/StaticConstructorPass.php',
         'Psy\\CodeCleaner\\StrictTypesPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/StrictTypesPass.php',
@@ -2531,6 +2549,7 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Psy\\Command\\PsyVersionCommand' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Command/PsyVersionCommand.php',
         'Psy\\Command\\ReflectingCommand' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Command/ReflectingCommand.php',
         'Psy\\Command\\ShowCommand' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Command/ShowCommand.php',
+        'Psy\\Command\\SudoCommand' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Command/SudoCommand.php',
         'Psy\\Command\\ThrowUpCommand' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Command/ThrowUpCommand.php',
         'Psy\\Command\\TraceCommand' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Command/TraceCommand.php',
         'Psy\\Command\\WhereamiCommand' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Command/WhereamiCommand.php',
@@ -2556,6 +2575,10 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Psy\\Formatter\\DocblockFormatter' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Formatter/DocblockFormatter.php',
         'Psy\\Formatter\\Formatter' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Formatter/Formatter.php',
         'Psy\\Formatter\\SignatureFormatter' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Formatter/SignatureFormatter.php',
+        'Psy\\Input\\CodeArgument' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Input/CodeArgument.php',
+        'Psy\\Input\\FilterOptions' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Input/FilterOptions.php',
+        'Psy\\Input\\ShellInput' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Input/ShellInput.php',
+        'Psy\\Input\\SilentInput' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Input/SilentInput.php',
         'Psy\\Output\\OutputPager' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Output/OutputPager.php',
         'Psy\\Output\\PassthruPager' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Output/PassthruPager.php',
         'Psy\\Output\\ProcOutputPager' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Output/ProcOutputPager.php',
@@ -2570,6 +2593,8 @@ class ComposerStaticInit64c6aa9869b8cd424953fd324c4f7b49
         'Psy\\Reflection\\ReflectionLanguageConstruct' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Reflection/ReflectionLanguageConstruct.php',
         'Psy\\Reflection\\ReflectionLanguageConstructParameter' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Reflection/ReflectionLanguageConstructParameter.php',
         'Psy\\Shell' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Shell.php',
+        'Psy\\Sudo' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Sudo.php',
+        'Psy\\Sudo\\SudoVisitor' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Sudo/SudoVisitor.php',
         'Psy\\TabCompletion\\AutoCompleter' => __DIR__ . '/..' . '/psy/psysh/src/Psy/TabCompletion/AutoCompleter.php',
         'Psy\\TabCompletion\\Matcher\\AbstractContextAwareMatcher' => __DIR__ . '/..' . '/psy/psysh/src/Psy/TabCompletion/Matcher/AbstractContextAwareMatcher.php',
         'Psy\\TabCompletion\\Matcher\\AbstractMatcher' => __DIR__ . '/..' . '/psy/psysh/src/Psy/TabCompletion/Matcher/AbstractMatcher.php',

@@ -10,6 +10,11 @@ class ReflectionsController extends Controller
 
     public function index($user_id, $event_id)
     {
+        // Make sure that the user is logged in, and the event belongs to user.
+        if (Controller::verifyUserAndEvent($user_id, $event_id) == false) {
+            return redirect('/');
+        }
+        
         $email = \Cookie::get('email', NULL);
         $get_user_query = "SELECT * FROM users WHERE email = '" . $email . "'";
         $user = \DB::select($get_user_query)[0];
@@ -33,6 +38,11 @@ class ReflectionsController extends Controller
 
     public function store(Request $request, $user_id, $event_id)
     {
+        // Make sure that the user is logged in, and the event belongs to user.
+        if (Controller::verifyUserAndEvent($user_id, $event_id) == false) {
+            return redirect('/');
+        }
+
         $body = request('body');
         $add_event_query = "INSERT INTO reflections(user_id, event_id, body) VALUES ('" . $user_id . "', '" . $event_id . "', '" . $body .  "')";
         \DB::insert($add_event_query);

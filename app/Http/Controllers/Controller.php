@@ -26,4 +26,27 @@ class Controller extends BaseController
         return true;
     }
 
+    public function verifyUserAndEvent($user_id, $event_id) {
+        //confirm they have a cookie with the email that matches the user_id, else redirect
+        $find_user_increment_query = "SELECT email FROM users WHERE id = '" . $user_id . "'";
+        $url_email = \DB::select($find_user_increment_query)[0]->email; 
+
+        $cookie_email = \Cookie::get('email', NULL);
+
+        if ($cookie_email != $url_email) {
+            return false;
+        }
+
+        // Now check if the event belongs to the user
+        $check_event_belonging = "SELECT * FROM events WHERE user_id = '" . $user_id . "'" . " AND id = '" . $event_id . "'";
+
+        $event_belonging = \DB::select($check_event_belonging);
+
+        if ($event_belonging == []) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

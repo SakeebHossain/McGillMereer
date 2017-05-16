@@ -27,8 +27,12 @@ class EventsController extends Controller
     }
 
 
-    public function create()
+    public function create($user_id)
     {
+        if (Controller::verifyUser($user_id) == false) {
+            return redirect('/');
+        }
+
         $email = \Cookie::get('email', NULL);
         $get_user_query = "SELECT * FROM users WHERE email = '" . $email . "'";
         $user = \DB::select($get_user_query)[0];
@@ -40,7 +44,21 @@ class EventsController extends Controller
         // Add user to Users table
         $title = request("title");
         $body = request("body");
-        $add_event_query = "INSERT INTO events(user_id, title, body) VALUES ('" . $user_id . "', '" . $title . "', '" . $body .  "')";
+        $add_event_query = "INSERT INTO events(user_id, title, body,
+        goal1, goal2, goal3, goal4, goal5, goal6, goal7, goal8, goal9, goal10, goal11, goal12)
+        VALUES ('" . $user_id . "', '" . $title . "', '" . $body . "', '" .
+        $request->goal1 . "', '" .
+        $request->goal2 . "', '" .
+        $request->goal3 . "', '" .
+        $request->goal4 . "', '" .
+        $request->goal5 . "', '" .
+        $request->goal6 . "', '" .
+        $request->goal7 . "', '" .
+        $request->goal8 . "', '" .
+        $request->goal9 . "', '" .
+        $request->goal10 . "', '" .
+        $request->goal11 . "', '" .
+        $request->goal12 . "')";
 
         \DB::insert($add_event_query);
 
@@ -49,6 +67,11 @@ class EventsController extends Controller
 
     public function show($user_id, $event_id)
     {
+        // Make sure that the user is logged in, and the event belongs to user.
+        if (Controller::verifyUserAndEvent($user_id, $event_id) == false) {
+            return redirect('/');
+        }
+
         $get_event_query = "SELECT * FROM events WHERE $user_id = '" . $user_id . "' AND id = '" . $event_id . "'";
 
         $email = \Cookie::get('email', NULL);
@@ -57,6 +80,29 @@ class EventsController extends Controller
 
         $event = \DB::select($get_event_query)[0];
 
-        return view("event.show", ['event' => $event, 'user' => $user]);
+        $users_goals = array();
+
+        $goals = array('goal1'=>"Leadership", 
+        'goal2' => "Problem-solving/Creativity",
+        'goal3' => "Team Work",
+        'goal4' => "Interpersonal Skills",
+        'goal5'=> "Communication",
+        'goal6' => "Self-Awareness",
+        'goal7' => "Willingness to Learn",
+        'goal8' => "Initiative",
+        'goal9' => "Action Planning",
+        'goal10' => "Flexibility",
+        'goal11' => "Numeracy",
+        'goal12' => "Commitment"
+        );
+
+        // Go through each goal and identify if it is selected.
+        foreach ($goals as $goal_number => $goal) {
+            if ($event->$goal_number == "SELECTED") {
+                array_push($users_goals, $goal);
+            } 
+        }
+
+        return view("event.show", ['event' => $event, 'user' => $user, 'goals' => $users_goals]);
     }
 }

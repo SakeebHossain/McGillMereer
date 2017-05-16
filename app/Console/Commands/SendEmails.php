@@ -38,7 +38,8 @@ class SendEmails extends Command
      */
     public function handle()
     {
-        $find_user_query = "SELECT * FROM users";
+
+        $find_user_query = "SELECT * FROM events JOIN users WHERE users.id = events.user_id;";
         $users = \DB::select($find_user_query);
 
 
@@ -46,7 +47,6 @@ class SendEmails extends Command
         $template_path = 'email_template';
 
         foreach($users as $user) {
-
 
             Mail::send([ 'html'=> $template_path ], ['user' => $user], function ($m) use ($user) {
                 $m->from('hello@app.com', 'Your Application');

@@ -24,6 +24,16 @@
 
         </div>
 
+        <div class="panel-body">
+
+            <h3>Goals</h3>
+
+            @foreach ($goals as $goal)
+            <p> {{ $goal}} </p>
+            @endforeach
+
+        </div>
+
     </div>
 
 
