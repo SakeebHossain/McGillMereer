@@ -40,6 +40,23 @@
     $( "#minval" ).val( $( "#slider-5" ).slider( "value" ) );
   });
 
+  //jQuery for slider
+
+
+  @foreach($users_goals as $user_goal => $value)
+    @if ( $value == "SELECTED" )
+        $(function() {
+            $( "#{{ $user_goal }}" ).slider({
+                value:50,
+                slide: function( event, ui ) {
+                  $( "#{{ $user_goal }}_minval" ).val( ui.value );
+                }  
+            });
+            $( "#{{ $user_goal }}_minval" ).val( $( "#{{ $user_goal }}" ).slider( "value" ) );
+        });
+    @endif
+  @endforeach
+
   </script>
 
 </footer>
