@@ -26,6 +26,31 @@
 
         <br>
 
+        
+        
+        <div style="text-align: left;">
+
+            <h4>Start Date:</h4>
+            <div class="input-group date">
+                <input type="text" class="datepicker form-control" name="start_date">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+            
+
+            <h4>End Date:</h4>           
+            <div class="input-group date">
+                <input type="text" class="datepicker form-control" name="end_date">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+
         <h4 style="text-align: left;">Select goals (we recommend picking 3!):</h4>
         
         <div style="text-align: left;">

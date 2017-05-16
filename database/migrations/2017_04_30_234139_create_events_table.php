@@ -30,7 +30,8 @@ class CreateEventsTable extends Migration
             $table->string('goal10');
             $table->string('goal11');
             $table->string('goal12');
-            $table->timestamps();
+            $table->string('start_date');
+            $table->string('end_date');
         });
     }
 

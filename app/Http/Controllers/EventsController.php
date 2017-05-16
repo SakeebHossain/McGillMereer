@@ -41,12 +41,15 @@ class EventsController extends Controller
 
     public function store(Request $request, $user_id)
     {
+        //TO-DO : validate the request. make sure the lengths are ok, goals are selected, dates make sense
         // Add user to Users table
         $title = request("title");
         $body = request("body");
-        $add_event_query = "INSERT INTO events(user_id, title, body,
+        $start_date = request("start_date");
+        $end_date = request("end_date");
+        $add_event_query = "INSERT INTO events(user_id, title, body, start_date, end_date,
         goal1, goal2, goal3, goal4, goal5, goal6, goal7, goal8, goal9, goal10, goal11, goal12)
-        VALUES ('" . $user_id . "', '" . $title . "', '" . $body . "', '" .
+        VALUES ('" . $user_id . "', '" . $title . "', '" . $body . "', '" . $start_date . "', '" . $end_date . "', '" .
         $request->goal1 . "', '" .
         $request->goal2 . "', '" .
         $request->goal3 . "', '" .
