@@ -60,11 +60,41 @@ class ReflectionsController extends Controller
             return redirect('/');
         }
 
+        $enjoyment_score = request('enjoyment_score');
         $body = request('body');
-        $add_event_query = "INSERT INTO reflections(user_id, event_id, body) VALUES ('" . $user_id . "', '" . $event_id . "', '" . $body .  "')";
+        // Go through each goal and get its value.
+        $goal1 = (request('goal1') == null ? 0 : (float)request('goal1') );
+        $goal2 = (request('goal2') == null ? 0 : (float)request('goal2'));
+        $goal3 = (request('goal3') == null ? 0 : (float)request('goal3'));
+        $goal4 = (request('goal4') == null ? 0 : (float)request('goal4'));
+        $goal5 = (request('goal5') == null ? 0 : (float)request('goal5'));
+        $goal6 = (request('goal6') == null ? 0 : (float)request('goal6'));
+        $goal7 = (request('goal7') == null ? 0 : (float)request('goal7'));
+        $goal8 = (request('goal8') == null ? 0 : (float)request('goal8'));
+        $goal9 = (request('goal9') == null ? 0 : (float)request('goal9'));
+        $goal10 = (request('goal10') == null ? 0 : (float)request('goal10'));
+        $goal11 = (request('goal11') == null ? 0 : (float)request('goal11'));
+        $goal12 = (request('goal12') == null ? 0 : (float)request('goal12'));
+
+
+        $add_event_query = "INSERT INTO reflections(date, user_id, event_id, body, goal1_score, goal2_score, goal3_score, goal4_score, goal5_score, goal6_score, goal7_score, goal8_score, goal9_score, goal10_score, goal11_score, goal12_score, enjoyment_score) VALUES (NOW(), '" . $user_id . "', '" . $event_id . "', '" . $body .  "', '" .
+        $goal1 . "', '" .
+        $goal2 . "', '" .
+        $goal3 . "', '" .
+        $goal4 . "', '" .
+        $goal5 . "', '" .
+        $goal6 . "', '" .
+        $goal7 . "', '" .
+        $goal8 . "', '" .
+        $goal9 . "', '" .
+        $goal10 . "', '" .
+        $goal11 . "', '" .
+        $goal12 . "', '" .
+        $enjoyment_score . "')";
+
         \DB::insert($add_event_query);
 
-        return redirect("/");
+        return redirect("/user/" . $user_id . "/event/" . $event_id . "/reflection");
     }
 
 
