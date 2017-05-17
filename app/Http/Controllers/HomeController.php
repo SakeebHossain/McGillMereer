@@ -103,8 +103,8 @@ class HomeController extends Controller
                     if ($value != 0) {
                         $sum = $overall_skill_score[$key] + $value;
                         // array_push($res, "In event " . $event->id . " belonging to user " . $event->user_id . ", the skill " . $key . " was updated from " . $overall_skill_score[$key]  . " to " . $sum); //used for debugging
-                        $overall_skill_score[$key] =  (float)$overall_skill_score[$key] + (float)$value;
-                        $overall_enjoyment_score[$key] = (float)$overall_enjoyment_score[$key] + (float)$enj_score;
+                        $overall_skill_score[$key] =  ((float)$overall_skill_score[$key] + (float)$value)/10;
+                        $overall_enjoyment_score[$key] = ((float)$overall_enjoyment_score[$key] + (float)$enj_score)/7.5;
                     }
                 }
             }
