@@ -3,7 +3,6 @@
 namespace Illuminate\Routing;
 
 use Closure;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
@@ -364,7 +363,7 @@ class UrlGenerator implements UrlGeneratorContract
      */
     public function formatParameters($parameters)
     {
-        $parameters = Arr::wrap($parameters);
+        $parameters = array_wrap($parameters);
 
         foreach ($parameters as $key => $parameter) {
             if ($parameter instanceof UrlRoutable) {

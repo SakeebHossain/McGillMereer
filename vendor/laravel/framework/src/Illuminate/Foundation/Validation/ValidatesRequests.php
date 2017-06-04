@@ -23,11 +23,11 @@ trait ValidatesRequests
      *
      * @param  \Illuminate\Contracts\Validation\Validator|array  $validator
      * @param  \Illuminate\Http\Request|null  $request
-     * @return array
+     * @return void
      */
     public function validateWith($validator, Request $request = null)
     {
-        $request = $request ?: request();
+        $request = $request ?: app('request');
 
         if (is_array($validator)) {
             $validator = $this->getValidationFactory()->make($request->all(), $validator);
@@ -36,8 +36,6 @@ trait ValidatesRequests
         if ($validator->fails()) {
             $this->throwValidationException($request, $validator);
         }
-
-        return $request->only(array_keys($validator->getRules()));
     }
 
     /**
@@ -47,7 +45,7 @@ trait ValidatesRequests
      * @param  array  $rules
      * @param  array  $messages
      * @param  array  $customAttributes
-     * @return array
+     * @return void
      */
     public function validate(Request $request, array $rules, array $messages = [], array $customAttributes = [])
     {
@@ -56,8 +54,6 @@ trait ValidatesRequests
         if ($validator->fails()) {
             $this->throwValidationException($request, $validator);
         }
-
-        return $request->only(array_keys($rules));
     }
 
     /**
@@ -68,7 +64,7 @@ trait ValidatesRequests
      * @param  array  $rules
      * @param  array  $messages
      * @param  array  $customAttributes
-     * @return array
+     * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -77,8 +73,6 @@ trait ValidatesRequests
         $this->withErrorBag($errorBag, function () use ($request, $rules, $messages, $customAttributes) {
             $this->validate($request, $rules, $messages, $customAttributes);
         });
-
-        return $request->only(array_keys($rules));
     }
 
     /**

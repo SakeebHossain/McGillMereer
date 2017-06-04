@@ -122,7 +122,7 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
             return;
         }
 
-        $values = (isset($key) ? $this->pluck($key) : $this)
+        $values = with(isset($key) ? $this->pluck($key) : $this)
                     ->sort()->values();
 
         $middle = (int) ($count / 2);
@@ -592,15 +592,7 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
      */
     public function has($key)
     {
-        $keys = is_array($key) ? $key : func_get_args();
-
-        foreach ($keys as $value) {
-            if (! $this->offsetExists($value)) {
-                return false;
-            }
-        }
-
-        return true;
+        return $this->offsetExists($key);
     }
 
     /**
@@ -1002,7 +994,7 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
             return $this->items[$keys];
         }
 
-        $keys = Arr::wrap($keys);
+        $keys = array_wrap($keys);
 
         return new static(array_intersect_key($this->items, array_flip($keys)));
     }

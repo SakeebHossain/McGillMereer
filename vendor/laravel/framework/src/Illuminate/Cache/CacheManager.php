@@ -47,7 +47,7 @@ class CacheManager implements FactoryContract
      * Get a cache store instance by name.
      *
      * @param  string|null  $name
-     * @return \Illuminate\Contracts\Cache\Repository
+     * @return mixed
      */
     public function store($name = null)
     {
@@ -164,9 +164,9 @@ class CacheManager implements FactoryContract
 
         $memcached = $this->app['memcached.connector']->connect(
             $config['servers'],
-            Arr::get($config, 'persistent_id'),
-            Arr::get($config, 'options', []),
-            array_filter(Arr::get($config, 'sasl', []))
+            array_get($config, 'persistent_id'),
+            array_get($config, 'options', []),
+            array_filter(array_get($config, 'sasl', []))
         );
 
         return $this->repository(new MemcachedStore($memcached, $prefix));
@@ -209,7 +209,7 @@ class CacheManager implements FactoryContract
 
         return $this->repository(
             new DatabaseStore(
-                $connection, $config['table'], $this->getPrefix($config)
+                $connection, $this->app['encrypter'], $config['table'], $this->getPrefix($config)
             )
         );
     }

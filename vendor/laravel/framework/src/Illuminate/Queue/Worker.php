@@ -91,7 +91,7 @@ class Worker
             // Before reserving any jobs, we will make sure this queue is not paused and
             // if it is we will just pause this worker for a given amount of time and
             // make sure we do not need to kill this worker process off completely.
-            if (! $this->daemonShouldRun($options, $connectionName, $queue)) {
+            if (! $this->daemonShouldRun($options)) {
                 $this->pauseWorker($options, $lastRestart);
 
                 continue;
@@ -159,15 +159,13 @@ class Worker
      * Determine if the daemon should process on this iteration.
      *
      * @param  WorkerOptions  $options
-     * @param  string  $connectionName
-     * @param  string  $queue
      * @return bool
      */
-    protected function daemonShouldRun(WorkerOptions $options, $connectionName, $queue)
+    protected function daemonShouldRun(WorkerOptions $options)
     {
         return ! (($this->manager->isDownForMaintenance() && ! $options->force) ||
             $this->paused ||
-            $this->events->until(new Events\Looping($connectionName, $queue)) === false);
+            $this->events->until(new Events\Looping) === false);
     }
 
     /**

@@ -8,12 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace PHPUnit\Framework;
-
 /**
  * A marker interface for marking any exception/error as result of an unit
  * test as risky.
  */
-interface RiskyTest
+interface PHPUnit_Framework_RiskyTest
 {
 }

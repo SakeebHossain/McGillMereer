@@ -13,7 +13,7 @@ trait HasEvents
      *
      * @var array
      */
-    protected $dispatchesEvents = [];
+    protected $events = [];
 
     /**
      * User exposed observable events.
@@ -158,11 +158,11 @@ trait HasEvents
      */
     protected function fireCustomModelEvent($event, $method)
     {
-        if (! isset($this->dispatchesEvents[$event])) {
+        if (! isset($this->events[$event])) {
             return;
         }
 
-        $result = static::$dispatcher->$method(new $this->dispatchesEvents[$event]($this));
+        $result = static::$dispatcher->$method(new $this->events[$event]($this));
 
         if (! is_null($result)) {
             return $result;

@@ -3,7 +3,6 @@
 namespace Illuminate\Auth;
 
 use Closure;
-use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Illuminate\Contracts\Auth\Factory as FactoryContract;
 
@@ -121,7 +120,7 @@ class AuthManager implements FactoryContract
      */
     public function createSessionDriver($name, $config)
     {
-        $provider = $this->createUserProvider(Arr::get($config, 'provider'));
+        $provider = $this->createUserProvider($config['provider']);
 
         $guard = new SessionGuard($name, $provider, $this->app['session.store']);
 
@@ -156,7 +155,7 @@ class AuthManager implements FactoryContract
         // that takes an API token field from the request and matches it to the
         // user in the database or another persistence layer where users are.
         $guard = new TokenGuard(
-            $this->createUserProvider(Arr::get($config, 'provider')),
+            $this->createUserProvider($config['provider']),
             $this->app['request']
         );
 
@@ -224,7 +223,7 @@ class AuthManager implements FactoryContract
     public function viaRequest($driver, callable $callback)
     {
         return $this->extend($driver, function () use ($callback) {
-            $guard = new RequestGuard($callback, $this->app['request'], $this->createUserProvider());
+            $guard = new RequestGuard($callback, $this->app['request']);
 
             $this->app->refresh('request', $guard, 'setRequest');
 

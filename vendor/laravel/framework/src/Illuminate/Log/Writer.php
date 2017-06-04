@@ -257,8 +257,10 @@ class Writer implements LogContract, PsrLoggerInterface
     public function useErrorLog($level = 'debug', $messageType = ErrorLogHandler::OPERATING_SYSTEM)
     {
         $this->monolog->pushHandler(
-            new ErrorLogHandler($messageType, $this->parseLevel($level))
+            $handler = new ErrorLogHandler($messageType, $this->parseLevel($level))
         );
+
+        $handler->setFormatter($this->getDefaultFormatter());
     }
 
     /**

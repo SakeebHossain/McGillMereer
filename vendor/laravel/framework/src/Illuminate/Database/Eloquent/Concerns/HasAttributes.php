@@ -400,7 +400,8 @@ trait HasAttributes
         $relation = $this->$method();
 
         if (! $relation instanceof Relation) {
-            throw new LogicException(get_class($this).'::'.$method.' must return a relationship instance.');
+            throw new LogicException('Relationship method must return an object of type '
+                .'Illuminate\Database\Eloquent\Relations\Relation');
         }
 
         return tap($relation->getResults(), function ($results) use ($method) {
@@ -959,8 +960,11 @@ trait HasAttributes
     {
         $dirty = [];
 
-        foreach ($this->getAttributes() as $key => $value) {
-            if (! $this->originalIsEquivalent($key, $value)) {
+        foreach ($this->attributes as $key => $value) {
+            if (! array_key_exists($key, $this->original)) {
+                $dirty[$key] = $value;
+            } elseif ($value !== $this->original[$key] &&
+                    ! $this->originalIsNumericallyEquivalent($key)) {
                 $dirty[$key] = $value;
             }
         }
@@ -969,34 +973,22 @@ trait HasAttributes
     }
 
     /**
-     * Determine if the new and old values for a given key are equivalent.
+     * Determine if the new and old values for a given key are numerically equivalent.
      *
-     * @param  string $key
-     * @param  mixed  $current
+     * @param  string  $key
      * @return bool
      */
-    protected function originalIsEquivalent($key, $current)
+    protected function originalIsNumericallyEquivalent($key)
     {
-        if (! array_key_exists($key, $this->original)) {
-            return false;
-        }
+        $current = $this->attributes[$key];
 
-        $original = $this->getOriginal($key);
+        $original = $this->original[$key];
 
-        if ($current === $original) {
-            return true;
-        } elseif (is_null($current)) {
-            return false;
-        } elseif ($this->isDateAttribute($key)) {
-            return $this->fromDateTime($current) ===
-                   $this->fromDateTime($original);
-        } elseif ($this->hasCast($key)) {
-            return $this->castAttribute($key, $current) ===
-                   $this->castAttribute($key, $original);
-        }
-
+        // This method checks if the two values are numerically equivalent even if they
+        // are different types. This is in case the two values are not the same type
+        // we can do a fair comparison of the two values to know if this is dirty.
         return is_numeric($current) && is_numeric($original)
-                && strcmp((string) $current, (string) $original) === 0;
+            && strcmp((string) $current, (string) $original) === 0;
     }
 
     /**

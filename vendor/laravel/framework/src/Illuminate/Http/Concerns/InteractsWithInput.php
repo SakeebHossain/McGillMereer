@@ -2,7 +2,6 @@
 
 namespace Illuminate\Http\Concerns;
 
-use stdClass;
 use SplFileInfo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -67,17 +66,6 @@ trait InteractsWithInput
      */
     public function exists($key)
     {
-        return $this->has($key);
-    }
-
-    /**
-     * Determine if the request contains a given input item key.
-     *
-     * @param  string|array  $key
-     * @return bool
-     */
-    public function has($key)
-    {
         $keys = is_array($key) ? $key : func_get_args();
 
         $input = $this->all();
@@ -97,7 +85,7 @@ trait InteractsWithInput
      * @param  string|array  $key
      * @return bool
      */
-    public function filled($key)
+    public function has($key)
     {
         $keys = is_array($key) ? $key : func_get_args();
 
@@ -126,24 +114,11 @@ trait InteractsWithInput
     /**
      * Get all of the input and files for the request.
      *
-     * @param  array|mixed  $keys
      * @return array
      */
-    public function all($keys = null)
+    public function all()
     {
-        $input = array_replace_recursive($this->input(), $this->allFiles());
-
-        if (! $keys) {
-            return $input;
-        }
-
-        $results = [];
-
-        foreach (is_array($keys) ? $keys : func_get_args() as $key) {
-            Arr::set($results, $key, Arr::get($input, $key));
-        }
-
-        return $results;
+        return array_replace_recursive($this->input(), $this->allFiles());
     }
 
     /**
@@ -168,18 +143,14 @@ trait InteractsWithInput
      */
     public function only($keys)
     {
+        $keys = is_array($keys) ? $keys : func_get_args();
+
         $results = [];
 
         $input = $this->all();
 
-        $placeholder = new stdClass;
-
-        foreach (is_array($keys) ? $keys : func_get_args() as $key) {
-            $value = data_get($input, $key, $placeholder);
-
-            if ($value !== $placeholder) {
-                Arr::set($results, $key, $value);
-            }
+        foreach ($keys as $key) {
+            Arr::set($results, $key, data_get($input, $key));
         }
 
         return $results;
@@ -200,6 +171,17 @@ trait InteractsWithInput
         Arr::forget($results, $keys);
 
         return $results;
+    }
+
+    /**
+     * Intersect an array of items with the input data.
+     *
+     * @param  array|mixed  $keys
+     * @return array
+     */
+    public function intersect($keys)
+    {
+        return array_filter($this->only(is_array($keys) ? $keys : func_get_args()));
     }
 
     /**

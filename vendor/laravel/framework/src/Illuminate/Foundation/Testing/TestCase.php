@@ -15,7 +15,6 @@ abstract class TestCase extends BaseTestCase
         Concerns\InteractsWithAuthentication,
         Concerns\InteractsWithConsole,
         Concerns\InteractsWithDatabase,
-        Concerns\InteractsWithExceptionHandling,
         Concerns\InteractsWithSession,
         Concerns\MocksApplicationServices;
 
@@ -98,10 +97,6 @@ abstract class TestCase extends BaseTestCase
     protected function setUpTraits()
     {
         $uses = array_flip(class_uses_recursive(static::class));
-
-        if (isset($uses[RefreshDatabase::class])) {
-            $this->refreshDatabase();
-        }
 
         if (isset($uses[DatabaseMigrations::class])) {
             $this->runDatabaseMigrations();

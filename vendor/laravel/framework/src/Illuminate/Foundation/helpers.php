@@ -6,7 +6,6 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Contracts\Routing\UrlGenerator;
-use Illuminate\Foundation\Bus\PendingDispatch;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
@@ -373,25 +372,11 @@ if (! function_exists('dispatch')) {
      * Dispatch a job to its appropriate handler.
      *
      * @param  mixed  $job
-     * @return \Illuminate\Foundation\Bus\PendingDispatch
+     * @return mixed
      */
     function dispatch($job)
     {
-        return new PendingDispatch($job);
-    }
-}
-
-if (! function_exists('dispatch_now')) {
-    /**
-     * Dispatch a command to its appropriate handler in the current process.
-     *
-     * @param  mixed  $job
-     * @param  mixed  $handler
-     * @return mixed
-     */
-    function dispatch_now($job, $handler = null)
-    {
-        return app(Dispatcher::class)->dispatchNow($job, $handler);
+        return app(Dispatcher::class)->dispatch($job);
     }
 }
 
@@ -695,9 +680,7 @@ if (! function_exists('request')) {
             return app('request')->only($key);
         }
 
-        $value = app('request')->__get($key);
-
-        return is_null($value) ? value($default) : $value;
+        return data_get(app('request')->all(), $key, $default);
     }
 }
 

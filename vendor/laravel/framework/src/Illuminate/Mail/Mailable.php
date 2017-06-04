@@ -8,12 +8,11 @@ use BadMethodCallException;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\Queue\Factory as Queue;
 use Illuminate\Contracts\Mail\Mailer as MailerContract;
 use Illuminate\Contracts\Mail\Mailable as MailableContract;
 
-class Mailable implements MailableContract, Renderable
+class Mailable implements MailableContract
 {
     /**
      * The person the message is from.
@@ -161,20 +160,6 @@ class Mailable implements MailableContract, Renderable
     }
 
     /**
-     * Render the mailable into a view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
-    {
-        Container::getInstance()->call([$this, 'build']);
-
-        return Container::getInstance()->make('mailer')->render(
-            $this->buildView(), $this->buildViewData()
-        );
-    }
-
-    /**
      * Build the view for the message.
      *
      * @return array|string
@@ -202,10 +187,6 @@ class Mailable implements MailableContract, Renderable
     protected function buildMarkdownView()
     {
         $markdown = Container::getInstance()->make(Markdown::class);
-
-        if (isset($this->theme)) {
-            $markdown->theme($this->theme);
-        }
 
         $data = $this->buildViewData();
 

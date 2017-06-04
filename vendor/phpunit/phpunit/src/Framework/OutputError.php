@@ -7,12 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace PHPUnit\Framework;
 
 /**
  * Extension to PHPUnit_Framework_AssertionFailedError to mark the special
  * case of a test that printed output.
  */
-class OutputError extends AssertionFailedError
+class PHPUnit_Framework_OutputError extends PHPUnit_Framework_AssertionFailedError
 {
 }

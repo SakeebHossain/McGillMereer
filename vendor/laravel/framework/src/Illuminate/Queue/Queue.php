@@ -76,13 +76,14 @@ abstract class Queue
      *
      * @param  string  $job
      * @param  mixed   $data
+     * @param  string  $queue
      * @return string
      *
      * @throws \Illuminate\Queue\InvalidPayloadException
      */
-    protected function createPayload($job, $data = '')
+    protected function createPayload($job, $data = '', $queue = null)
     {
-        $payload = json_encode($this->createPayloadArray($job, $data));
+        $payload = json_encode($this->createPayloadArray($job, $data, $queue));
 
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new InvalidPayloadException;
@@ -96,9 +97,10 @@ abstract class Queue
      *
      * @param  string  $job
      * @param  mixed   $data
+     * @param  string  $queue
      * @return array
      */
-    protected function createPayloadArray($job, $data = '')
+    protected function createPayloadArray($job, $data = '', $queue = null)
     {
         return is_object($job)
                     ? $this->createObjectPayload($job)

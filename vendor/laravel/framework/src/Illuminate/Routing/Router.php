@@ -3,18 +3,13 @@
 namespace Illuminate\Routing;
 
 use Closure;
-use ArrayObject;
-use JsonSerializable;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Routing\BindingRegistrar;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Illuminate\Contracts\Routing\Registrar as RegistrarContract;
@@ -245,7 +240,7 @@ class Router implements RegistrarContract, BindingRegistrar
      * @param  string  $name
      * @param  string  $controller
      * @param  array  $options
-     * @return \Illuminate\Routing\PendingResourceRegistration
+     * @return void
      */
     public function resource($name, $controller, array $options = [])
     {
@@ -255,9 +250,7 @@ class Router implements RegistrarContract, BindingRegistrar
             $registrar = new ResourceRegistrar($this);
         }
 
-        return new PendingResourceRegistration(
-            $registrar, $name, $controller, $options
-        );
+        $registrar->register($name, $controller, $options);
     }
 
     /**
@@ -496,7 +489,7 @@ class Router implements RegistrarContract, BindingRegistrar
      * Dispatch the request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function dispatch(Request $request)
     {
@@ -599,19 +592,12 @@ class Router implements RegistrarContract, BindingRegistrar
      *
      * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @param  mixed  $response
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
-    public static function prepareResponse($request, $response)
+    public function prepareResponse($request, $response)
     {
         if ($response instanceof PsrResponseInterface) {
             $response = (new HttpFoundationFactory)->createResponse($response);
-        } elseif (! $response instanceof SymfonyResponse &&
-                   ($response instanceof Arrayable ||
-                    $response instanceof Jsonable ||
-                    $response instanceof ArrayObject ||
-                    $response instanceof JsonSerializable ||
-                    is_array($response))) {
-            $response = new JsonResponse($response);
         } elseif (! $response instanceof SymfonyResponse) {
             $response = new Response($response);
         }
@@ -917,15 +903,7 @@ class Router implements RegistrarContract, BindingRegistrar
      */
     public function has($name)
     {
-        $names = is_array($name) ? $name : func_get_args();
-
-        foreach ($names as $value) {
-            if (! $this->routes->hasNamedRoute($value)) {
-                return false;
-            }
-        }
-
-        return true;
+        return $this->routes->hasNamedRoute($name);
     }
 
     /**

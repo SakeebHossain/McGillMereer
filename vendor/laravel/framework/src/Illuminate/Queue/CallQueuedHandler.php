@@ -43,8 +43,6 @@ class CallQueuedHandler
         );
 
         if (! $job->isDeletedOrReleased()) {
-            $this->ensureNextJobIsChainIsDispatched($command);
-
             $job->delete();
         }
     }
@@ -81,19 +79,6 @@ class CallQueuedHandler
         }
 
         return $instance;
-    }
-
-    /**
-     * Ensure the next job in the chain is dispatched if applicable.
-     *
-     * @param  mixed  $command
-     * @return void
-     */
-    protected function ensureNextJobIsChainIsDispatched($command)
-    {
-        if (method_exists($command, 'dispatchNextJobInChain')) {
-            $command->dispatchNextJobInChain();
-        }
     }
 
     /**

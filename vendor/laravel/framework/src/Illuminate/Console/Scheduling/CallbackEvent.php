@@ -59,8 +59,6 @@ class CallbackEvent extends Event
             $this->mutex->create($this);
         }
 
-        parent::callBeforeCallbacks($container);
-
         try {
             $response = $container->call($this->callback, $this->parameters);
         } finally {

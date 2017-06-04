@@ -528,16 +528,15 @@ class TestResponse
      *
      * @param  string|array  $keys
      * @param  mixed  $format
-     * @param  string  $errorBag
      * @return $this
      */
-    public function assertSessionHasErrors($keys = [], $format = null, $errorBag = 'default')
+    public function assertSessionHasErrors($keys = [], $format = null)
     {
         $this->assertSessionHas('errors');
 
         $keys = (array) $keys;
 
-        $errors = app('session.store')->get('errors')->getBag($errorBag);
+        $errors = app('session.store')->get('errors');
 
         foreach ($keys as $key => $value) {
             if (is_int($key)) {
@@ -548,19 +547,6 @@ class TestResponse
         }
 
         return $this;
-    }
-
-    /**
-     * Assert that the session has the given errors.
-     *
-     * @param  string  $errorBag
-     * @param  string|array  $keys
-     * @param  mixed  $format
-     * @return $this
-     */
-    public function assertSessionHasErrorsIn($errorBag, $keys = [], $format = null)
-    {
-        return $this->assertSessionHasErrors($keys, $format, $errorBag);
     }
 
     /**

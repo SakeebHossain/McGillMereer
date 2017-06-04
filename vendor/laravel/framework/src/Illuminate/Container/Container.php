@@ -241,11 +241,9 @@ class Container implements ArrayAccess, ContainerContract
     protected function getClosure($abstract, $concrete)
     {
         return function ($container, $parameters = []) use ($abstract, $concrete) {
-            if ($abstract == $concrete) {
-                return $container->build($concrete);
-            }
+            $method = ($abstract == $concrete) ? 'build' : 'make';
 
-            return $container->make($concrete, $parameters);
+            return $container->$method($concrete, $parameters);
         };
     }
 
@@ -357,8 +355,6 @@ class Container implements ArrayAccess, ContainerContract
     {
         $this->removeAbstractAlias($abstract);
 
-        $isBound = $this->bound($abstract);
-
         unset($this->aliases[$abstract]);
 
         // We'll check to determine if this type has been bound before, and if it has
@@ -366,7 +362,7 @@ class Container implements ArrayAccess, ContainerContract
         // can be updated with consuming classes that have gotten resolved here.
         $this->instances[$abstract] = $instance;
 
-        if ($isBound) {
+        if ($this->bound($abstract)) {
             $this->rebound($abstract);
         }
     }
@@ -549,27 +545,26 @@ class Container implements ArrayAccess, ContainerContract
     }
 
     /**
-     * An alias function name for make().
+     * Resolve the given type with the given parameter overrides.
      *
      * @param  string  $abstract
      * @param  array  $parameters
      * @return mixed
      */
-    public function makeWith($abstract, array $parameters = [])
+    public function makeWith($abstract, array $parameters)
     {
-        return $this->make($abstract, $parameters);
+        return $this->resolve($abstract, $parameters);
     }
 
     /**
      * Resolve the given type from the container.
      *
      * @param  string  $abstract
-     * @param  array  $parameters
      * @return mixed
      */
-    public function make($abstract, array $parameters = [])
+    public function make($abstract)
     {
-        return $this->resolve($abstract, $parameters);
+        return $this->resolve($abstract);
     }
 
     /**
@@ -791,7 +786,7 @@ class Container implements ArrayAccess, ContainerContract
     }
 
     /**
-     * Determine if the given dependency has a parameter override.
+     * Determine if the given dependency has a parameter override from makeWith.
      *
      * @param  \ReflectionParameter  $dependency
      * @return bool

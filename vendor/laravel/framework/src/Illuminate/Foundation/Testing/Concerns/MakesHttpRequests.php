@@ -34,25 +34,11 @@ trait MakesHttpRequests
     /**
      * Disable middleware for the test.
      *
-     * @param  string|array  $middleware
      * @return $this
      */
-    public function withoutMiddleware($middleware = null)
+    public function withoutMiddleware()
     {
-        if (is_null($middleware)) {
-            $this->app->instance('middleware.disable', true);
-
-            return $this;
-        }
-
-        foreach ((array) $middleware as $abstract) {
-            $this->app->instance($abstract, new class {
-                public function handle($request, $next)
-                {
-                    return $next($request);
-                }
-            });
-        }
+        $this->app->instance('middleware.disable', true);
 
         return $this;
     }

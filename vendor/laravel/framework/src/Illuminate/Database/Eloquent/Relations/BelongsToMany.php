@@ -25,24 +25,10 @@ class BelongsToMany extends Relation
      *
      * @var string
      */
-    protected $foreignPivotKey;
+    protected $foreignKey;
 
     /**
      * The associated key of the relation.
-     *
-     * @var string
-     */
-    protected $relatedPivotKey;
-
-    /**
-     * The key name of the parent model.
-     *
-     * @var string
-     */
-    protected $parentKey;
-
-    /**
-     * The key name of the related model.
      *
      * @var string
      */
@@ -110,22 +96,17 @@ class BelongsToMany extends Relation
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @param  string  $table
-     * @param  string  $foreignPivotKey
-     * @param  string  $relatedPivotKey
-     * @param  string  $parentKey
-     * @param  string  $localKey
+     * @param  string  $foreignKey
+     * @param  string  $relatedKey
      * @param  string  $relationName
      * @return void
      */
-    public function __construct(Builder $query, Model $parent, $table, $foreignPivotKey,
-                                $relatedPivotKey, $parentKey, $relatedKey, $relationName = null)
+    public function __construct(Builder $query, Model $parent, $table, $foreignKey, $relatedKey, $relationName = null)
     {
         $this->table = $table;
-        $this->parentKey = $parentKey;
         $this->relatedKey = $relatedKey;
+        $this->foreignKey = $foreignKey;
         $this->relationName = $relationName;
-        $this->relatedPivotKey = $relatedPivotKey;
-        $this->foreignPivotKey = $foreignPivotKey;
 
         parent::__construct($query, $parent);
     }
@@ -159,9 +140,9 @@ class BelongsToMany extends Relation
         // model instance. Then we can set the "where" for the parent models.
         $baseTable = $this->related->getTable();
 
-        $key = $baseTable.'.'.$this->relatedKey;
+        $key = $baseTable.'.'.$this->related->getKeyName();
 
-        $query->join($this->table, $key, '=', $this->getQualifiedRelatedPivotKeyName());
+        $query->join($this->table, $key, '=', $this->getQualifiedRelatedKeyName());
 
         return $this;
     }
@@ -174,7 +155,7 @@ class BelongsToMany extends Relation
     protected function addWhereConstraints()
     {
         $this->query->where(
-            $this->getQualifiedForeignPivotKeyName(), '=', $this->parent->{$this->parentKey}
+            $this->getQualifiedForeignKeyName(), '=', $this->parent->getKey()
         );
 
         return $this;
@@ -188,7 +169,7 @@ class BelongsToMany extends Relation
      */
     public function addEagerConstraints(array $models)
     {
-        $this->query->whereIn($this->getQualifiedForeignPivotKeyName(), $this->getKeys($models));
+        $this->query->whereIn($this->getQualifiedForeignKeyName(), $this->getKeys($models));
     }
 
     /**
@@ -247,7 +228,7 @@ class BelongsToMany extends Relation
         $dictionary = [];
 
         foreach ($results as $result) {
-            $dictionary[$result->pivot->{$this->foreignPivotKey}][] = $result;
+            $dictionary[$result->pivot->{$this->foreignKey}][] = $result;
         }
 
         return $dictionary;
@@ -540,7 +521,7 @@ class BelongsToMany extends Relation
      */
     protected function aliasedPivotColumns()
     {
-        $defaults = [$this->foreignPivotKey, $this->relatedPivotKey];
+        $defaults = [$this->foreignKey, $this->relatedKey];
 
         return collect(array_merge($defaults, $this->pivotColumns))->map(function ($column) {
             return $this->table.'.'.$column.' as pivot_'.$column;
@@ -840,7 +821,7 @@ class BelongsToMany extends Relation
      */
     public function getExistenceCompareKey()
     {
-        return $this->getQualifiedForeignPivotKeyName();
+        return $this->getQualifiedForeignKeyName();
     }
 
     /**
@@ -893,9 +874,9 @@ class BelongsToMany extends Relation
      *
      * @return string
      */
-    public function getQualifiedForeignPivotKeyName()
+    public function getQualifiedForeignKeyName()
     {
-        return $this->table.'.'.$this->foreignPivotKey;
+        return $this->table.'.'.$this->foreignKey;
     }
 
     /**
@@ -903,9 +884,9 @@ class BelongsToMany extends Relation
      *
      * @return string
      */
-    public function getQualifiedRelatedPivotKeyName()
+    public function getQualifiedRelatedKeyName()
     {
-        return $this->table.'.'.$this->relatedPivotKey;
+        return $this->table.'.'.$this->relatedKey;
     }
 
     /**

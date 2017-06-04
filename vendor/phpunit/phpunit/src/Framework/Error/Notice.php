@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace PHPUnit\Framework\Error;
 
 /**
  * Wrapper for PHP notices.
@@ -17,7 +16,7 @@ namespace PHPUnit\Framework\Error;
  * PHPUnit_Framework_Error_Notice::$enabled = false;
  * </code>
  */
-class Notice extends Error
+class PHPUnit_Framework_Error_Notice extends PHPUnit_Framework_Error
 {
     public static $enabled = true;
 }

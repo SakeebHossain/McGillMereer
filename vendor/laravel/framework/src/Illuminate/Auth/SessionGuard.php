@@ -703,6 +703,27 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
     }
 
     /**
+     * Get the user provider used by the guard.
+     *
+     * @return \Illuminate\Contracts\Auth\UserProvider
+     */
+    public function getProvider()
+    {
+        return $this->provider;
+    }
+
+    /**
+     * Set the user provider used by the guard.
+     *
+     * @param  \Illuminate\Contracts\Auth\UserProvider  $provider
+     * @return void
+     */
+    public function setProvider(UserProvider $provider)
+    {
+        $this->provider = $provider;
+    }
+
+    /**
      * Return the currently cached user.
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null

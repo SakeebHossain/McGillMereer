@@ -12,7 +12,7 @@ class Pivot extends Model
      *
      * @var \Illuminate\Database\Eloquent\Model
      */
-    public $pivotParent;
+    public $parent;
 
     /**
      * The name of the foreign key column.
@@ -59,7 +59,7 @@ class Pivot extends Model
         // We store off the parent instance so we will access the timestamp column names
         // for the model, since the pivot model timestamps aren't easily configurable
         // from the developer's point of view. We can use the parents to get these.
-        $this->pivotParent = $parent;
+        $this->parent = $parent;
 
         $this->exists = $exists;
 
@@ -183,7 +183,7 @@ class Pivot extends Model
      */
     public function getCreatedAtColumn()
     {
-        return $this->pivotParent->getCreatedAtColumn();
+        return $this->parent->getCreatedAtColumn();
     }
 
     /**
@@ -193,6 +193,6 @@ class Pivot extends Model
      */
     public function getUpdatedAtColumn()
     {
-        return $this->pivotParent->getUpdatedAtColumn();
+        return $this->parent->getUpdatedAtColumn();
     }
 }

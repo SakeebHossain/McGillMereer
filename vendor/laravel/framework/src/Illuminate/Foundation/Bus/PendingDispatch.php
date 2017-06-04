@@ -2,8 +2,6 @@
 
 namespace Illuminate\Foundation\Bus;
 
-use Illuminate\Contracts\Bus\Dispatcher;
-
 class PendingDispatch
 {
     /**
@@ -57,25 +55,12 @@ class PendingDispatch
     }
 
     /**
-     * Set the jobs that should run if this job is successful.
-     *
-     * @param  array  $chain
-     * @return $this
-     */
-    public function chain($chain)
-    {
-        $this->job->chain($chain);
-
-        return $this;
-    }
-
-    /**
      * Handle the object's destruction.
      *
      * @return void
      */
     public function __destruct()
     {
-        app(Dispatcher::class)->dispatch($this->job);
+        dispatch($this->job);
     }
 }

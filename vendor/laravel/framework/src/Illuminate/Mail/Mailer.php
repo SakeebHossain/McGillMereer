@@ -174,28 +174,9 @@ class Mailer implements MailerContract, MailQueueContract
     }
 
     /**
-     * Render the given message as a view.
-     *
-     * @param  string|array  $view
-     * @param  array  $data
-     * @return \Illuminate\View\View
-     */
-    public function render($view, array $data = [])
-    {
-        // First we need to parse the view, which could either be a string or an array
-        // containing both an HTML and plain text versions of the view which should
-        // be used when sending an e-mail. We will extract both of them out here.
-        list($view, $plain, $raw) = $this->parseView($view);
-
-        $data['message'] = $this->createMessage();
-
-        return $this->renderView($view, $data);
-    }
-
-    /**
      * Send a new message using a view.
      *
-     * @param  string|array|MailableContract  $view
+     * @param  string|array  $view
      * @param  array  $data
      * @param  \Closure|string  $callback
      * @return void
@@ -338,17 +319,19 @@ class Mailer implements MailerContract, MailQueueContract
     /**
      * Queue a new e-mail message for sending.
      *
-     * @param  string|array|MailableContract  $view
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
      * @param  string|null  $queue
      * @return mixed
      */
-    public function queue($view, $queue = null)
+    public function queue($view, array $data = [], $callback = null, $queue = null)
     {
         if (! $view instanceof MailableContract) {
             throw new InvalidArgumentException('Only mailables may be queued.');
         }
 
-        return $view->queue(is_null($queue) ? $this->queue : $queue);
+        return $view->queue($this->queue);
     }
 
     /**
@@ -356,11 +339,13 @@ class Mailer implements MailerContract, MailQueueContract
      *
      * @param  string  $queue
      * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
      * @return mixed
      */
-    public function onQueue($queue, $view)
+    public function onQueue($queue, $view, array $data, $callback)
     {
-        return $this->queue($view, $queue);
+        return $this->queue($view, $data, $callback, $queue);
     }
 
     /**
@@ -370,41 +355,47 @@ class Mailer implements MailerContract, MailQueueContract
      *
      * @param  string  $queue
      * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
      * @return mixed
      */
-    public function queueOn($queue, $view)
+    public function queueOn($queue, $view, array $data, $callback)
     {
-        return $this->onQueue($queue, $view);
+        return $this->onQueue($queue, $view, $data, $callback);
     }
 
     /**
      * Queue a new e-mail message for sending after (n) seconds.
      *
-     * @param  \DateTime|int  $delay
-     * @param  string|array|MailableContract  $view
+     * @param  int  $delay
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
      * @param  string|null  $queue
      * @return mixed
      */
-    public function later($delay, $view, $queue = null)
+    public function later($delay, $view, array $data = [], $callback = null, $queue = null)
     {
         if (! $view instanceof MailableContract) {
             throw new InvalidArgumentException('Only mailables may be queued.');
         }
 
-        return $view->later($delay, is_null($queue) ? $this->queue : $queue);
+        return $view->later($delay, $this->queue);
     }
 
     /**
      * Queue a new e-mail message for sending after (n) seconds on the given queue.
      *
      * @param  string  $queue
-     * @param  \DateTime|int  $delay
+     * @param  int  $delay
      * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
      * @return mixed
      */
-    public function laterOn($queue, $delay, $view)
+    public function laterOn($queue, $delay, $view, array $data, $callback)
     {
-        return $this->later($delay, $view, $queue);
+        return $this->later($delay, $view, $data, $callback, $queue);
     }
 
     /**
