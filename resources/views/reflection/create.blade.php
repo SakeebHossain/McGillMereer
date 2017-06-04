@@ -13,8 +13,24 @@
          {{ csrf_field() }}
 
         <h3>Reflection</h3>
+
+        <br>
+
+        <h4>What have you done so far?</h4>
         <label for="inputDescription" class="sr-only">Description</label>
-        <textarea type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="body" rows="10" required></textarea>
+        <textarea type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="question1" rows="10" required></textarea>
+
+        <br>
+
+        <h4>How much are you enjoying the experience so far?</h4>
+        <label for="inputDescription" class="sr-only">Description</label>
+        <textarea type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="question2" rows="10" required></textarea>
+
+        <br>
+
+        <h4>What have you learned so far?</h4>
+        <label for="inputDescription" class="sr-only">Description</label>
+        <textarea type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="question3" rows="10" required></textarea>
 
         <br>
 

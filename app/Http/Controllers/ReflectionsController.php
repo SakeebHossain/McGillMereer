@@ -61,11 +61,15 @@ class ReflectionsController extends Controller
         }
 
         $this->validate(request(), [
-            'body' => 'required'
+            'question1' => 'required',
+            'question2' => 'required',
+            'question3' => 'required'
         ]);
 
         $enjoyment_score = request('enjoyment_score');
-        $body = request('body');
+        $question1 = request('question1');
+        $question2 = request('question2');
+        $question3 = request('question3');
         // Go through each goal and get its value.
         $goal1 = (request('goal1') == null ? 0 : (float)request('goal1') );
         $goal2 = (request('goal2') == null ? 0 : (float)request('goal2'));
@@ -81,7 +85,7 @@ class ReflectionsController extends Controller
         $goal12 = (request('goal12') == null ? 0 : (float)request('goal12'));
 
 
-        $add_event_query = "INSERT INTO reflections(date, user_id, event_id, body, goal1_score, goal2_score, goal3_score, goal4_score, goal5_score, goal6_score, goal7_score, goal8_score, goal9_score, goal10_score, goal11_score, goal12_score, enjoyment_score) VALUES (NOW(), '" . $user_id . "', '" . $event_id . "', ?, '" .
+        $add_event_query = "INSERT INTO reflections(date, user_id, event_id, question1, question2, question3, goal1_score, goal2_score, goal3_score, goal4_score, goal5_score, goal6_score, goal7_score, goal8_score, goal9_score, goal10_score, goal11_score, goal12_score, enjoyment_score) VALUES (NOW(), '" . $user_id . "', '" . $event_id . "', ?, ?, ?, '" .
         $goal1 . "', '" .
         $goal2 . "', '" .
         $goal3 . "', '" .
@@ -96,7 +100,7 @@ class ReflectionsController extends Controller
         $goal12 . "', '" .
         $enjoyment_score . "')";
 
-        \DB::insert($add_event_query, [$body]);
+        \DB::insert($add_event_query, [$question1, $question2, $question3]);
 
         return redirect("/user/" . $user_id . "/event/" . $event_id . "/reflection");
     }

@@ -18,9 +18,6 @@
                         <a href="{{ url('/user/' . $user->id . '/events' ) }}">Events</a>
                     </li>
                     <li>
-                        <a href="#">Reflection</a>
-                    </li>
-                    <li>
                         <a href="{{ url('/user/' . $user->id ) }}">Profile</a>
                     </li>
                     <li>

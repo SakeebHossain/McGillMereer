@@ -33,11 +33,6 @@ class EventsController extends Controller
             return redirect('/');
         }
 
-        $this->validate(request(), [
-            'title' => 'required',
-            'body' => 'required'
-        ]);
-
         $email = \Cookie::get('email', NULL);
         $get_user_query = "SELECT * FROM users WHERE email = '" . $email . "'";
         $user = \DB::select($get_user_query)[0];
@@ -46,7 +41,7 @@ class EventsController extends Controller
 
     public function store(Request $request, $user_id)
     {
-        //TO-DO : validate the request. make sure the lengths are ok, goals are selected, dates make sense
+        //TO-DO : validate the request. make sure the lengths are ok, goals are selected, date(format)ates make sense
         // Add user to Users table
         $title = request("title");
         $body = request("body");

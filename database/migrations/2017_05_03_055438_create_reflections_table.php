@@ -18,7 +18,9 @@ class CreateReflectionsTable extends Migration
             $table->string('user_id');
             $table->string('event_id');
             $table->string('date');
-            $table->string('body');
+            $table->text('question1');
+            $table->text('question2');
+            $table->text('question3');
             $table->string("enjoyment_score");
             $table->string("goal1_score");
             $table->string("goal2_score");

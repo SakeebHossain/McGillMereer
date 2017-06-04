@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
             $table->string('goal1');
             $table->string('goal2');
             $table->string('goal3');
