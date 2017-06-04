@@ -15,14 +15,14 @@
         <h4 style="text-align: left;">Title:</h4>
 
         <label for="inputTitle" class="sr-only">Title</label>
-        <input type="text" id="inputTitle" class="form-control" placeholder="Title of your event" required="" autofocus="" name="title">
+        <input type="text" id="inputTitle" class="form-control" placeholder="Title of your event" required="" autofocus="" name="title" required>
 
         <br>
 
         <h4 style="text-align: left;">Description:</h4>
 
         <label for="inputDescription" class="sr-only">Description</label>
-        <textarea rows="5" cols="10" type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="body"></textarea>
+        <textarea rows="5" cols="10" type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="body" required></textarea>
 
         <br>
 

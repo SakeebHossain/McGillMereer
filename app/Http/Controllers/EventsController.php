@@ -33,6 +33,11 @@ class EventsController extends Controller
             return redirect('/');
         }
 
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $email = \Cookie::get('email', NULL);
         $get_user_query = "SELECT * FROM users WHERE email = '" . $email . "'";
         $user = \DB::select($get_user_query)[0];
@@ -49,7 +54,7 @@ class EventsController extends Controller
         $end_date = request("end_date");
         $add_event_query = "INSERT INTO events(user_id, title, body, start_date, end_date,
         goal1, goal2, goal3, goal4, goal5, goal6, goal7, goal8, goal9, goal10, goal11, goal12)
-        VALUES ('" . $user_id . "', '" . $title . "', '" . $body . "', '" . $start_date . "', '" . $end_date . "', '" .
+        VALUES ('" . $user_id . "', ?, ?, '" . $start_date . "', '" . $end_date . "', '" .
         $request->goal1 . "', '" .
         $request->goal2 . "', '" .
         $request->goal3 . "', '" .
@@ -63,7 +68,7 @@ class EventsController extends Controller
         $request->goal11 . "', '" .
         $request->goal12 . "')";
 
-        \DB::insert($add_event_query);
+        \DB::insert($add_event_query, [$title, $body]);
 
         return redirect('/user/' . $user_id . "/events");
     }

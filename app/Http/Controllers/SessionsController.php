@@ -28,6 +28,11 @@ class SessionsController extends Controller
     {
         
         // We validate that the user is real and then log them in. Check DB to find user and password.
+        $this->validate(request(), [
+            'email' => 'required|exists:users,email',
+            'password' => 'required'
+        ]);
+
         $email = request("email");
         $password = request("password");
 

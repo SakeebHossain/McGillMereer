@@ -14,7 +14,7 @@
 
         <h3>Reflection</h3>
         <label for="inputDescription" class="sr-only">Description</label>
-        <textarea type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="body" rows="10"></textarea>
+        <textarea type="text" id="inputDescription" class="form-control" placeholder="Describe the event..." required="" autofocus="" name="body" rows="10" required></textarea>
 
         <br>
 
