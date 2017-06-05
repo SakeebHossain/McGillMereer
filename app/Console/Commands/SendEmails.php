@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Mail;
+use Carbon\Carbon;
 
 class SendEmails extends Command
 {
@@ -48,11 +49,15 @@ class SendEmails extends Command
 
         foreach($users as $user) {
 
-            Mail::send([ 'html'=> $template_path ], ['user' => $user], function ($m) use ($user) {
-                $m->from('hello@app.com', 'Your Application');
+            if ($user->end_date >= Carbon::now()->toDateString()) {
 
-                $m->to($user->email, $user->name)->subject('Your Reminder!');
-            });
+                Mail::send([ 'html'=> $template_path ], ['user' => $user], function ($m) use ($user) {
+                    $m->from('hello@app.com', 'Your Application');
+
+                    $m->to($user->email, $user->name, $user->title)->subject('Your Reminder!');
+                });
+
+            }
 
         }
     }
