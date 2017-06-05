@@ -7,6 +7,10 @@
         <p class="lead">Let's begin.</p>
 
         <div class="row">
+            <img src="https://s30.postimg.org/48y0mosjl/meraar-logo.png">
+        </div>
+
+        <div class="row">
 
             <div class="col-lg-5"></div>
 
